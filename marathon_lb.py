@@ -1145,7 +1145,10 @@ def compareWriteAndReloadConfig(config, config_file, domain_map_array,
     if haproxy_map:
         domain_map_string = generateMapString(domain_map_array)
         app_map_string = generateMapString(app_map_array)
-
+        # python replaces '\r\n' with '\n' on read in text mode
+        # replace it here to get consistent comparison
+        config = config.replace('\r\n', '\n')
+        
         if (runningConfig != config or
                 compareMapFile(domain_map_file, domain_map_string) or
                 compareMapFile(app_map_file, app_map_string)):
