@@ -1147,10 +1147,6 @@ def compareWriteAndReloadConfig(config, config_file, domain_map_array,
     if haproxy_map:
         domain_map_string = generateMapString(domain_map_array)
         app_map_string = generateMapString(app_map_array)
-        
-        # remove any line-ending inconsistencies
-        config = "\n".join(config.splitlines())
-        runningConfig = "\n".join(runningConfig.splitlines())
 
         if (runningConfig != config or
                 compareMapFile(domain_map_file, domain_map_string) or
@@ -1206,10 +1202,6 @@ def compareMapFile(map_file, map_string):
             runningmap = f.read()
     except IOError:
         logger.warning("couldn't open map file for reading")
-
-    # remove any line-ending inconsistencies
-    map_string = "\n".join(map_string.splitlines())
-    runningmap = "\n".join(runningmap.splitlines())
     
     return runningmap != map_string
 
