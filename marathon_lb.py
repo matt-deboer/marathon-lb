@@ -1200,7 +1200,7 @@ def compareMapFile(map_file, map_string):
             runningmap = f.read()
     except IOError:
         logger.warning("couldn't open map file for reading")
-    
+
     return runningmap != map_string
 
 
