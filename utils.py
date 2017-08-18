@@ -364,6 +364,8 @@ def get_port_mapping_ports(app):
         task_ports = [p['containerPort']
                     for p in port_mappings
                     if 'containerPort' in p]
+    else:
+        return None
     if len(task_ports) == 0:
         return None
     return task_ports
