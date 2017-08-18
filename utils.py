@@ -360,9 +360,10 @@ def get_ip_address_discovery_ports(app):
 
 def get_port_mapping_ports(app):
     port_mappings = get_app_port_mappings(app)
-    task_ports = [p['containerPort']
-                  for p in port_mappings
-                  if 'containerPort' in p]
+    if port_mappings is not None:
+        task_ports = [p['containerPort']
+                    for p in port_mappings
+                    if 'containerPort' in p]
     if len(task_ports) == 0:
         return None
     return task_ports
